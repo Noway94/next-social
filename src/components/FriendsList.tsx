@@ -3,7 +3,7 @@ import prisma from "@/lib/client";
 import Image from "next/image";
 import Link from "next/link";
 
-const FriendPage = async ({ userId }: { userId: string }) => {
+const FriendsList = async ({ userId }: { userId: string }) => {
   const friends = await prisma.follower.findMany({
     where: {
       followerId: userId,
@@ -26,7 +26,7 @@ const FriendPage = async ({ userId }: { userId: string }) => {
               height={32}
               className="w-8 h-8 rounded-full"
             />
-            <Link href={`/profile/${friend.following.username}`}>
+            <Link href={`/messages/${friend.following.id}`}>
                     {friend.following.username}
             </Link>
           </li>
@@ -36,4 +36,4 @@ const FriendPage = async ({ userId }: { userId: string }) => {
   );
 };
 
-export default FriendPage;
+export default FriendsList;

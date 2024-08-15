@@ -12,6 +12,9 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+           screens: {
+        'xs': '400px',
+      },
       fontFamily: {
         sans: ["var(--font-geist-sans)"],
         mono: ["var(--font-geist-mono)"],

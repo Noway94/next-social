@@ -343,3 +343,42 @@ export const deletePost = async (postId: number) => {
     console.log(err);
   }
 };
+
+export const sendMessage = async (receiverId: string, content: string) => {
+  const { userId: senderId } = auth();
+
+  if (!senderId) {
+    throw new Error("User is not authenticated!");
+  }
+
+  const MessageSchema = z.object({
+    content: z.string().min(1).max(255),
+  });
+
+  const validatedMessage = MessageSchema.safeParse({ content });
+
+  if (!validatedMessage.success) {
+    console.log(validatedMessage.error.flatten().fieldErrors);
+    throw new Error("Message content is not valid!");
+  }
+
+  try {
+    const createdMessage = await prisma.message.create({
+      data: {
+        content: validatedMessage.data.content,
+        senderId,
+        receiverId,
+      },
+      include: {
+        sender: true,
+        receiver: true,
+      },
+    });
+
+    return createdMessage;
+  } catch (err) {
+    console.log(err);
+    throw new Error("Something went wrong!");
+  }
+};
+
