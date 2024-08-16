@@ -36,6 +36,4 @@ const FriendPage = async ({ userId }: { userId: string }) => {
   );
 };
 
-export {
-  FriendPage
-} ;
+export default FriendPage
