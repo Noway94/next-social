@@ -15,14 +15,14 @@ type Props = {
 };
 
 const FriendsList = ({ friends, currentUserId }: Props) => {
-  console.log("Current User ID:", currentUserId);
-  console.log("Friends List:", friends);
+ // console.log("Current User ID:", currentUserId);
+  //console.log("Friends List:", friends);
 
   const filteredFriends = friends.filter((friend) => {
     console.log(`Checking friend ID: ${friend.following.id} against current user ID: ${currentUserId}`);
     return friend.following.id !== currentUserId;
   });
-  console.log("Filtered Friends List:", filteredFriends);
+ // console.log("Filtered Friends List:", filteredFriends);
 
   return (
     <div className="w-1/4 p-4">

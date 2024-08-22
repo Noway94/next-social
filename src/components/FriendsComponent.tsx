@@ -17,7 +17,7 @@ type Props = {
 
 const FriendsComponent = ({ friends, currentUserId, onStartChat, unreadMessages }: Props) => {
   const filteredFriends = friends.filter((friend) => friend.following.id !== currentUserId);
-  console.log("Filtered Friends List:", filteredFriends);
+  // console.log("Filtered Friends List:", filteredFriends);
 
   return (
     <div className="w-1/4 p-4">

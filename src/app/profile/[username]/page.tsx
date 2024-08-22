@@ -1,6 +1,7 @@
 
 import Feed from "@/components/feed/Feed"; 
 import LeftMenu from "@/components/leftMenu/LeftMenu";
+import FriendRequests from "@/components/rightMenu/FriendRequests";
 import RightMenu from "@/components/rightMenu/RightMenu";
 import UserInfoCard from "@/components/rightMenu/UserInfoCard";
 import prisma from "@/lib/client";
@@ -93,6 +94,7 @@ const ProfilePage = async ({ params }: { params: { username: string } }) => {
 
              <div className=" max-400px:block md:hidden">
               <UserInfoCard user={user}/>
+              <FriendRequests />
              </div>
 
 

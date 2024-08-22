@@ -25,10 +25,10 @@ const ioHandler = (req: NextApiRequest, res: NextApiResponseWithSocket) => {
     });
 
     io.on('connection', (socket) => {
-      console.log('New client connected:', socket.id);
+     // console.log('New client connected:', socket.id);
 
       socket.on('sendMessage', (message) => {
-        console.log('Message received:', message);
+     //   console.log('Message received:', message);
         io.emit('receiveMessage', message);
       });
 
