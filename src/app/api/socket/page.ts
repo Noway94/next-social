@@ -3,11 +3,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { Server as HTTPServer } from 'http';
 import { Socket as NetSocket } from 'net';
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
+export const runtime = 'nodejs'; // New format for the config
 
 type NextApiResponseWithSocket = NextApiResponse & {
   socket: NetSocket & {
