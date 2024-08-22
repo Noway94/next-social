@@ -382,3 +382,33 @@ export const sendMessage = async (receiverId: string, content: string) => {
   }
 };
 
+export const getMessages = async (senderId: string, receiverId: string) => {
+  try {
+    const messages = await prisma.message.findMany({
+      where: {
+        OR: [
+          { senderId, receiverId },
+          { senderId: receiverId, receiverId: senderId },
+        ],
+      },
+      select: {
+        id: true,
+        content: true,
+        createdAt: true,
+        sender: {
+          select: {
+            username: true,
+          },
+        },
+      },
+      orderBy: {
+        createdAt: "asc",
+      },
+    });
+
+    return messages;
+  } catch (err) {
+    console.log(err);
+    throw new Error("Failed to fetch messages!");
+  }
+};
