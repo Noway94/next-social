@@ -35,6 +35,8 @@ const StoryList = ({
       user: {
         id: userId,
         username: "Sending...",
+        email: null, // Add this field
+        password: null, // Add this field
         avatar: user?.imageUrl || "/noAvatar.png",
         cover: "",
         description: "",
@@ -45,6 +47,9 @@ const StoryList = ({
         school: "",
         website: "",
         createdAt: new Date(Date.now()),
+        otpSecret: null, // Add this field
+        otpToken: null, // Add this field
+        otpExpiresAt: null, // Add this field
       },
     });
 

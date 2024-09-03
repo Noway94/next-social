@@ -30,8 +30,10 @@ const CommentList = ({
       postId: postId,
       user: {
         id: user.id,
-        username: "Sending Please Wait...",
-        avatar: user.imageUrl || "/noAvatar.png",
+        username: "Sending...",
+        email: null, // Add this field
+        password: null, // Add this field
+        avatar: user?.imageUrl || "/noAvatar.png",
         cover: "",
         description: "",
         name: "",
@@ -41,6 +43,9 @@ const CommentList = ({
         school: "",
         website: "",
         createdAt: new Date(Date.now()),
+        otpSecret: null, // Add this field
+        otpToken: null, // Add this field
+        otpExpiresAt: null, // Add this field
       },
     });
     try {
