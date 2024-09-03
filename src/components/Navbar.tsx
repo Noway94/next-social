@@ -8,6 +8,7 @@ import {
   SignedOut,
   UserButton,
 } from "@clerk/nextjs";
+import IconComponent from "./IconComponent";
 
 const Navbar = () => {
   return (
@@ -62,28 +63,21 @@ const Navbar = () => {
 
       </div>
       {/* RIGHT */}
+
       <div className="w-[30%] flex items-center gap-4 xl:gap-8 justify-end ">
 
 
         <ClerkLoading>
-          <div className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-gray-500 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white" />
+          <div className="inline-block h-4 w-4 animate-spin rounded-full border-2
+           border-gray-500 border-solid border-current border-e-transparent align-[-0.125em] 
+           text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white" />
         </ClerkLoading>
         <ClerkLoaded>
           <SignedIn>
 
-            <div className="cursor-pointer">
-            <Link href="/friends">
-              <Image src="/people.png" alt="" width={24} height={24} />
-              </Link>
-            </div>
-            <div className="cursor-pointer">
-             <Link href="/messages">
-              <Image src="/messages.png" alt="" width={20} height={20} />
-                </Link> 
-            </div>
-            <div className="cursor-pointer">
-              <Image src="/notifications.png" alt="" width={20} height={20} />
-            </div>
+                  <IconComponent/>
+
+       
             <UserButton />
           </SignedIn>
           <SignedOut>
@@ -91,6 +85,7 @@ const Navbar = () => {
               <Image src="/social_logo.png" alt="" width={20} height={20} />
               <Link href="/sign-in">Login/Register</Link>
             </div>
+
           </SignedOut>
         </ClerkLoaded>
         <MobileMenu />

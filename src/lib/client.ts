@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client'
-
+import { fieldEncryptionExtension } from 'prisma-field-encryption';
 const globalForPrisma = globalThis as unknown as { prisma: PrismaClient }
 
  const prisma =

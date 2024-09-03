@@ -37,10 +37,12 @@ const ioHandler = (req: NextApiRequest, res: NextApiResponseWithSocket) => {
       });
 
       socket.on('callUser', (data) => {
+        console.log('Call user event received:', data); // Add log
         io.to(data.userToCall).emit('callUser', { signal: data.signal, from: data.from });
       });
 
       socket.on('answerCall', (data) => {
+        console.log('Answer call event received:', data); // Add log
         io.to(data.to).emit('callAccepted', data.signal);
       });
 

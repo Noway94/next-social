@@ -29,6 +29,7 @@ export default function RootLayout({
          </div>
 
          <div className=" bg-slate-100 px-4 lg:px-16 xl:px-32 2xl:px-64"> 
+       
             {children}
          </div>
 

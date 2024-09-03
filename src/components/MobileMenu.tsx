@@ -2,15 +2,18 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react'
+import IconComponent from './IconComponent';
 
 const MobileMenu = () => {
     const [isOpen,setIsOpen]=useState(false);
 
   return (
     <div className=''>
-
+      
         <div className='md:hidden'> 
-          
+          <div className='flex flex-row'> 
+          <IconComponent/>
+          </div>
         <div className='flex flex-col gap-[4.5px]  cursor-pointer' 
          onClick={()=>setIsOpen((prev) => !prev)}>
 

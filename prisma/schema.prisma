@@ -16,6 +16,8 @@ datasource db {
 model User {
   id                     String          @id
   username               String          @unique
+  email                  String?          @unique
+  password               String?      //   @encrypted
   avatar                 String?
   cover                  String?
   name                   String?
@@ -40,6 +42,12 @@ model User {
    sentMessages           Message[]       @relation("SentMessages")
   receivedMessages       Message[]       @relation("ReceivedMessages")
   notifications Notification[]
+  
+  otpSecret              String?
+  otpToken               String?
+  otpExpiresAt           DateTime?
+
+
 }
 
 model Post {
@@ -125,6 +133,7 @@ model Message {
   senderId  String
   receiver  User     @relation("ReceivedMessages", fields: [receiverId], references: [id], onDelete: Cascade)
   receiverId String
+  seenAt    DateTime? // Add this field to track when the message was seen
 }
 
 

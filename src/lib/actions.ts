@@ -5,6 +5,21 @@ import prisma from "./client";
 import { z } from "zod";
 import { revalidatePath } from "next/cache";
 
+
+
+export const getUsernameById = async (userId: string) => {
+  try {
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+      select: { username: true },
+    });
+    return user?.username || null;
+  } catch (err) {
+    console.log(err);
+    throw new Error("Failed to fetch username");
+  }
+};
+
 export const switchFollow = async (userId: string) => {
   const { userId: currentUserId } = auth();
 
@@ -412,3 +427,26 @@ export const getMessages = async (senderId: string, receiverId: string) => {
     throw new Error("Failed to fetch messages!");
   }
 };
+
+
+
+
+export const updateMessageSeenAt = async (messageId: number, seenAt: Date) => {
+  try {
+    const message = await prisma.message.findUnique({
+      where: { id: messageId },
+      select: { seenAt: true },
+    });
+
+    if (!message?.seenAt) {
+      await prisma.message.update({
+        where: { id: messageId },
+        data: { seenAt },
+      });
+    }
+  } catch (error) {
+    console.error("Failed to update seenAt:", error);
+  }
+};
+
+

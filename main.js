@@ -1,4 +1,3 @@
-// server.js
 const { createServer } = require('http');
 const next = require('next');
 const { Server } = require('socket.io');
@@ -17,10 +16,10 @@ app.prepare().then(() => {
   });
 
   io.on('connection', (socket) => {
-   // console.log('New client connected:', socket.id);
+    console.log('New client connected:', socket.id);
 
     socket.on('sendMessage', (message) => {
-   //   console.log('Message received:', message);
+      console.log('Message received:', message);
       io.emit('receiveMessage', message);
     });
 
@@ -28,17 +27,16 @@ app.prepare().then(() => {
       socket.broadcast.emit('typing', data);
     });
 
-
-
     socket.on('callUser', (data) => {
-      io.to(data.userToCall).emit('callUser',
-         { signal: data.signal, from: data.from });
+      console.log('Call user event received:', data); // Add log
+      io.to(data.userToCall).emit('callUser', { signal: data.signal, from: data.from });
     });
-  
+
     socket.on('answerCall', (data) => {
+      console.log('Answer call event received:', data); // Add log
       io.to(data.to).emit('callAccepted', data.signal);
     });
-  
+
     socket.on('disconnect', () => {
       console.log('Client disconnected:', socket.id);
     });
