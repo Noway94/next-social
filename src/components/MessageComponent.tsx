@@ -248,7 +248,8 @@ return (
                   <div className="text-gray-500 text-sm">
                     Sent at: {new Date(msg.createdAt).toLocaleTimeString()}
                     {msg.seenAt && <div>Seen at: {new Date(msg.seenAt).toLocaleTimeString()}</div>}
-                  </div>
+                  </div> 
+                   
                 )}
               </div>
             ))}
