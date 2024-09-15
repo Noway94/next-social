@@ -74,9 +74,11 @@ const Navbar = () => {
         </ClerkLoading>
         <ClerkLoaded>
           <SignedIn>
+                      <div className="hidden  md:flex ">
+                      <IconComponent />
 
-                  <IconComponent/>
-
+                      </div>
+       
        
             <UserButton />
           </SignedIn>

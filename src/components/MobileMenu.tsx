@@ -11,7 +11,7 @@ const MobileMenu = () => {
     <div className=''>
       
         <div className='md:hidden'> 
-          <div className='flex flex-row'> 
+          <div className='flex absolute right-[35%]  gap-2'> 
           <IconComponent/>
           </div>
         <div className='flex flex-col gap-[4.5px]  cursor-pointer' 

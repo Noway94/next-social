@@ -1,4 +1,3 @@
-// src/app/friends/page.tsx
 import prisma from "@/lib/client";
 import FriendsList from "@/components/FriendsList";
 import { auth } from "@clerk/nextjs/server";
@@ -9,16 +8,29 @@ const FriendsPage = async ({ params }: { params: { userId: string } }) => {
     console.log("User is not authenticated");
     return <div>Loading...</div>; // Or handle unauthenticated state appropriately
   }
+
   const friends = await prisma.follower.findMany({
     where: {
-      followerId: params.userId,
+      followerId: currentUserId,
     },
     include: {
       following: true,
     },
   });
 
-  return <FriendsList friends={friends}  currentUserId={currentUserId} />;
+  //console.log("Raw Friends Data for User:", currentUserId, friends);
+
+  const formattedFriends = friends.map(friend => ({
+    following: {
+      id: friend.following.id,
+      username: friend.following.username,
+      avatar: friend.following.avatar,
+    },
+  }));
+
+ // console.log("Formatted Friends Data for User:", params.userId, formattedFriends);
+
+  return <FriendsList friends={formattedFriends} currentUserId={currentUserId} />;
 };
 
 export default FriendsPage;

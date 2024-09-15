@@ -20,6 +20,27 @@ export const getUsernameById = async (userId: string) => {
   }
 };
 
+
+export const getFriends = async (currentUserId: string)=> {
+  const friends = await prisma.follower.findMany({
+    where: {
+      followerId: currentUserId,
+    },
+    include: {
+      following: true,
+    },
+  });
+
+  return friends.map(friend => ({
+    following: {
+      id: friend.following.id,
+      username: friend.following.username,
+      avatar: friend.following.avatar,
+    },
+  }));
+}
+
+
 export const switchFollow = async (userId: string) => {
   const { userId: currentUserId } = auth();
 
